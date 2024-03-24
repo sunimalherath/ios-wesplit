@@ -8,49 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var tapCount = 0
-    @State var name = ""
+    @State private var checkAmount = 0.0
+    @State private var numberOfPeople = 2
+    @State private var tipPercentage = 20
     
-    var students = ["John", "Jane", "Michelle"]
-    @State private var selectedStudent = "Michelle"
+    let tipPercentages = [10, 15, 20, 25, 0]
     
     var body: some View {
-        NavigationStack {
-            Form {
-                Section {
-                    TextField("Enter your name", text: $name)
-                    Text("Your name is \(name)")
-                }
-                
-                Section {
-                    Text("Hello There")
-                    Button("Tap Count: \(tapCount)") {
-                        tapCount+=1
-                    }
-                }
-                
-                Section {
-                    Picker("Select your student", selection: $selectedStudent) {
-                        ForEach(students, id: \.self) {
-                            Text($0)
-                        }
-                    }
-                }
-                
-                Section {
-                    ForEach(0..<5) { number in
-                        Text("Row \(number)")
-                    }
-                }
-                
-                Section {
-                    ForEach(0..<5) {
-                        Text("Row \($0)")
-                    }
-                }
+        Form {
+            Section {
+                TextField(
+                    "Amount",
+                    value: $checkAmount,
+                    format: .currency(code: Locale.current.currency?.identifier ?? "AUD")
+                )
+                .keyboardType(.decimalPad)
             }
-            .navigationTitle("Swift UI")
-            .navigationBarTitleDisplayMode(.inline)
+            Section {
+                Text(
+                    checkAmount,
+                    format: .currency(code: Locale.current.currency?.identifier ?? "AUD")
+                )
+            }
         }
     }
 }
