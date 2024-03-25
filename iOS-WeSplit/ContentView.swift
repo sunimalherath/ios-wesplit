@@ -27,6 +27,13 @@ struct ContentView: View {
         return amountPerPerson
     }
     
+    // TODO
+    /**
+        1. Show the total tip amount below the tip percentage selection
+        2. Add clear button to the TextField
+        3. Keep the TextField empty when the app loads
+        4. After entering the amount currency sign does not show in the TextField unless user navigates to the "Number of people" and comes back.
+     */
     
     
     var body: some View {
